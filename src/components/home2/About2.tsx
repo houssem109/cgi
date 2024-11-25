@@ -28,43 +28,7 @@ export default function About2() {
                         </span>{" "} submitted by users
                     </p>
 
-                    {/*    <p className="mt-5 md:block hidden">
-                        We use top tools like{" "}
-                        <span className="text-emerald-400 font-semibold uppercase">
-                            Blender
-                        </span>{" "}
-                        for 3D modeling,
-                        <span className="text-emerald-400 font-semibold uppercase">
-                            {" "}
-                            Unity
-                        </span>
-                        , and{" "}
-                        <span className="text-emerald-400 font-semibold uppercase">
-                            Unreal Engine
-                        </span>{" "}
-                        to develop our games. We make both 2D and 3D games,
-                        always aiming for high quality and creativity.
-                    </p>
-
-                    <p className=" md:block hidden mt-5">
-                        Our dream is to become the{" "}
-                        <span className="text-emerald-400 font-semibold uppercase">
-                            {" "}
-                            number one{" "}
-                        </span>
-                        gaming studio in Tunisia and then in Africa. We are
-                        excited about{" "}
-                        <span className="text-emerald-400 font-semibold uppercase">
-                            the future
-                        </span>{" "}
-                        and have many new projects{" "}
-                        <span className="text-emerald-400 font-semibold uppercase">
-                            coming up
-                        </span>
-                        . We believe in making games that entertain, inspire,
-                        and educate.{" "}
-                    </p>
-                */}
+                    
                 </div>
                 
                 <div className="xl:w-[40%] md:w-[30%] md:static absolute left-0  top-0  xl:h-[400px] h-[250px] right-0 flex items-center justify-center  ">

@@ -5,57 +5,79 @@ import { SliverText } from "../ui/silver-text";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
 
+// AddProjectPage Component
 const AddProjectPage: React.FC = () => {
+  // State to manage form input fields
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    releaseDate: "",
-    installationLink: "",
+    title: "", // Project title
+    description: "", // Project description
+    releaseDate: "", // Release date for the project
+    installationLink: "", // Link for installation or download
   });
 
-  const [photos, setPhotos] = useState<string[]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
+  // State to manage dynamic lists (photos and categories)
+  const [photos, setPhotos] = useState<string[]>([]); // Array of photo URLs
+  const [categories, setCategories] = useState<string[]>([]); // Array of category names
+
+  // Navigation hook for redirection
   const navigate = useNavigate();
 
+  // Handle input field changes for the form
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value } = e.target; // Get field name and value
+    setFormData((prev) => ({ ...prev, [name]: value })); // Update the corresponding field in formData
   };
 
-  const handleAddPhoto = () => setPhotos([...photos, ""]);
+  // Add an empty photo input field
+  const handleAddPhoto = () => setPhotos([...photos, ""]); // Append an empty string to photos array
+
+  // Update a specific photo URL in the photos array
   const handlePhotoChange = (index: number, value: string) => {
-    const updatedPhotos = [...photos];
-    updatedPhotos[index] = value;
-    setPhotos(updatedPhotos);
+    const updatedPhotos = [...photos]; // Create a copy of photos array
+    updatedPhotos[index] = value; // Update the specific index with the new value
+    setPhotos(updatedPhotos); // Save the updated array
   };
-  const handleRemovePhoto = (index: number) => setPhotos(photos.filter((_, i) => i !== index));
-  const handleAddCategory = () => setCategories([...categories, ""]);
+
+  // Remove a specific photo input field
+  const handleRemovePhoto = (index: number) => setPhotos(photos.filter((_, i) => i !== index)); // Remove the photo at the specified index
+
+  // Add an empty category input field
+  const handleAddCategory = () => setCategories([...categories, ""]); // Append an empty string to categories array
+
+  // Update a specific category in the categories array
   const handleCategoryChange = (index: number, value: string) => {
-    const updatedCategories = [...categories];
-    updatedCategories[index] = value;
-    setCategories(updatedCategories);
+    const updatedCategories = [...categories]; // Create a copy of categories array
+    updatedCategories[index] = value; // Update the specific index with the new value
+    setCategories(updatedCategories); // Save the updated array
   };
-  const handleRemoveCategory = (index: number) => setCategories(categories.filter((_, i) => i !== index));
 
+  // Remove a specific category input field
+  const handleRemoveCategory = (index: number) =>
+    setCategories(categories.filter((_, i) => i !== index)); // Remove the category at the specified index
+
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent the default form submission behavior
 
+    // Create a new project object with form data
     const newProject = {
-      ...formData,
-      photos,
-      categories,
-      approved: false, // Set verified to false by default
-      createdAt: new Date().toISOString(), // Optional: add a timestamp
+      ...formData, // Spread formData fields (title, description, releaseDate, installationLink)
+      photos, // Attach photos array
+      categories, // Attach categories array
+      approved: false, // Set the approved status to false by default
+      createdAt: new Date().toISOString(), // Add a timestamp of the project creation
     };
 
     try {
-      await addDoc(collection(db, "projects"), newProject); // Add project to Firestore
-      console.log("Project added successfully!");
-      navigate("/projetpage"); // Redirect after success
+      // Add the new project to the Firestore 'projects' collection
+      await addDoc(collection(db, "projects"), newProject);
+      console.log("Project added successfully!"); // Log success message
+      navigate("/projetpage"); // Redirect the user to the projects page
     } catch (error) {
-      console.error("Error adding project: ", error);
+      console.error("Error adding project: ", error); // Log error if Firestore operation fails
     }
   };
+
 
 
   return (
