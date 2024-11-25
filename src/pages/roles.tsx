@@ -4,7 +4,7 @@ import { db } from "@/firebaseConfig";
 import { ROLES, updateUserRole, createUserRole } from "@/lib/roles";
 import { SliverText } from "@/components/ui/silver-text";
 import Footer from "@/components/shared/Footer";
-import Nav from "@/components/shared/Nav";
+import Nav2 from "@/components/shared/Nav2";
 
 export default function RolesManagement() {
     const [users, setUsers] = useState([]);
@@ -105,7 +105,7 @@ export default function RolesManagement() {
     return (
         <div className="flex flex-col p-0 min-h-screen overflow-hidden dark:bg-neutral-950 bg-white dark:bg-grid-white/5 bg-grid-black/[0.2]">
             <div className="flex-grow overflow-x-auto">
-                <Nav />
+                <Nav2 />
                 <div className="p-9">
                     <SliverText className="text-4xl mb-9 font-bold">User Management</SliverText>
 

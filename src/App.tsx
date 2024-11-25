@@ -10,6 +10,7 @@ import RegisterSPage from "./components/register/registerSPage";
 import RolesManagement from "./pages/roles";
 import AddProjectPage from "./components/projetpage/AddProjectPage";
 import Home2 from "./components/home2/Home2";
+import VerifyProjects from "./components/projetpage/VerifProject";
 
 function App() {
     return (
@@ -29,6 +30,8 @@ function App() {
                 <Route path="/Home2" element={<Home2 />} />
                 <Route path="/registerSPage" element={<RegisterSPage />} />
                 <Route path="/projetpage/add" element={<AddProjectPage />} />
+                <Route path="/VerifyProjects" element={<VerifyProjects />} />
+                
             </Routes>
         </Router>
     );

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../shared/Footer";
 import { SliverText } from "../ui/silver-text";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "@/firebaseConfig";
 
 const AddProjectPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +15,6 @@ const AddProjectPage: React.FC = () => {
 
   const [photos, setPhotos] = useState<string[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
-
   const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -21,48 +22,41 @@ const AddProjectPage: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleAddPhoto = () => {
-    setPhotos([...photos, ""]);
-  };
-
+  const handleAddPhoto = () => setPhotos([...photos, ""]);
   const handlePhotoChange = (index: number, value: string) => {
     const updatedPhotos = [...photos];
     updatedPhotos[index] = value;
     setPhotos(updatedPhotos);
   };
-
-  const handleRemovePhoto = (index: number) => {
-    setPhotos(photos.filter((_, i) => i !== index));
-  };
-
-  const handleAddCategory = () => {
-    setCategories([...categories, ""]);
-  };
-
+  const handleRemovePhoto = (index: number) => setPhotos(photos.filter((_, i) => i !== index));
+  const handleAddCategory = () => setCategories([...categories, ""]);
   const handleCategoryChange = (index: number, value: string) => {
     const updatedCategories = [...categories];
     updatedCategories[index] = value;
     setCategories(updatedCategories);
   };
+  const handleRemoveCategory = (index: number) => setCategories(categories.filter((_, i) => i !== index));
 
-  const handleRemoveCategory = (index: number) => {
-    setCategories(categories.filter((_, i) => i !== index));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const newProject = {
       ...formData,
       photos,
       categories,
+      approved: false, // Set verified to false by default
+      createdAt: new Date().toISOString(), // Optional: add a timestamp
     };
 
-    console.log("New Project Data:", newProject);
-
-    // Redirect back to the projects page
-    navigate("/projects");
+    try {
+      await addDoc(collection(db, "projects"), newProject); // Add project to Firestore
+      console.log("Project added successfully!");
+      navigate("/projetpage"); // Redirect after success
+    } catch (error) {
+      console.error("Error adding project: ", error);
+    }
   };
+
 
   return (
     <main className="overflow-hidden p-0 w-full dark:bg-neutral-950 bg-white dark:bg-grid-white/5 bg-grid-black/[0.2] relative">

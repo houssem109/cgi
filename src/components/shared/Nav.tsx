@@ -141,9 +141,12 @@ export default function Nav() {
         }}
         className="hover-underline-animation hover:cursor-pointer font-medium font-mono text-[20px] md:mr-8"
     >
-        Registration
+        Apply Now
     </p>
+    
 )}
+
+
                 {user ? (
                     <UserDropdown />
                 ) : (
@@ -151,7 +154,7 @@ export default function Nav() {
                         <button
                             name="navActionBtn"
                             className="text-neutral-200 bg-emerald-500 active:scale-100 transition-all bg-gradient-to-tr from-emerald-600 to-emerald-700 hover:from-neutral-300 hover:to-neutral-400 hover:text-black py-2 font-bold text-[18px] px-6 font-mono rounded-md shadow-[0px_0px_20px_#05966988]">
-                            login
+                            Login
                         </button>
                     </Link>
                 )}
@@ -175,7 +178,7 @@ export default function Nav() {
                     <div
                         onClick={() => navigateFunction("/ProgramsPage")}
                         className="hover-underline-animation !flex opacity-80 py-1 active:scale-95 transition-transform border items-center justify-center mt-4 hover:cursor-pointer w-full font-medium font-mono text-[28px] ">
-                        programs
+                        Programs
                     </div>
                      )}
                      {role !== "admin" && (
@@ -192,7 +195,7 @@ export default function Nav() {
                             navigateFunction("/register");
                         }}
                         className="hover-underline-animation !flex opacity-80 py-1 active:scale-95 transition-transform border items-center justify-center mt-4 hover:cursor-pointer w-full font-medium font-mono text-[28px] ">
-                        Registration
+                        Apply Now
                     </div>
                     
                 )}

@@ -99,7 +99,7 @@ export default function Nav() {
         <nav className="flex max-w-[1600px] mx-auto pt-5 xl:px-[80px] md:px-[50px] px-5">
             <SliverText className="text-[36px]">CGI_Studio</SliverText>
             <div className="md:flex hidden w-full ml-auto items-center justify-end">
-           
+ {role !== "admin" && (        
     <p
         onClick={() => {
             navigateFunction("/QuestionPage");
@@ -109,6 +109,7 @@ export default function Nav() {
         Questions
     </p>
 
+)}
 
 
     <p
@@ -124,11 +125,21 @@ export default function Nav() {
 {role !== "admin" && (
     <p
         onClick={() => {
-            navigateFunction("/projetpage");
+            navigateFunction("/VerifyProjects");
         }}
         className="hover-underline-animation hover:cursor-pointer font-medium font-mono text-[20px] md:ml-6 mr-8"
     >
-        Projects
+        VerifyProjects
+    </p>
+)}
+{role === "admin" && (
+    <p
+        onClick={() => {
+            navigateFunction("/roles");
+        }}
+        className="hover-underline-animation hover:cursor-pointer font-medium font-mono text-[20px] md:ml-6 mr-8"
+    >
+        roles
     </p>
 )}
 
@@ -153,35 +164,36 @@ export default function Nav() {
                 {role !== "admin" && (
                     <div
                         onClick={() => {
-                            navigateFunction("/");
+                            navigateFunction("/QuestionPage");
                         }}
                         className="hover-underline-animation !flex opacity-80 py-1 active:scale-95 transition-transform border items-center justify-center mt-4 hover:cursor-pointer w-full font-medium font-mono text-[28px] ">
-                        Home
+                        Question
                     </div>
                     )}
-                                    {role !== "admin" && (
+                                 
 
                     <div
-                        onClick={() => navigateFunction("/ProgramsPage")}
+                        onClick={() => navigateFunction("/registerSPage")}
                         className="hover-underline-animation !flex opacity-80 py-1 active:scale-95 transition-transform border items-center justify-center mt-4 hover:cursor-pointer w-full font-medium font-mono text-[28px] ">
-                        programs
+                        Users
                     </div>
-                     )}
+                
                      {role !== "admin" && (
                     <div
                         onClick={() => {
-                            navigateFunction("/projetpage");
+                            navigateFunction("/VerifyProjects");
                         }}
                         className="hover-underline-animation !flex opacity-80 py-1 active:scale-95 transition-transform border items-center justify-center mt-4 hover:cursor-pointer w-full font-medium font-mono text-[28px] ">
-                        Projetcs
+                                VerifyProjects
+
                     </div>
-                )}{role !== "admin" && (
+                )}{role === "admin" && (
                     <div
                         onClick={() => {
-                            navigateFunction("/register");
+                            navigateFunction("/roles");
                         }}
                         className="hover-underline-animation !flex opacity-80 py-1 active:scale-95 transition-transform border items-center justify-center mt-4 hover:cursor-pointer w-full font-medium font-mono text-[28px] ">
-                        Registration
+                        roles
                     </div>
                     
                 )}

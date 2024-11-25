@@ -71,7 +71,7 @@ const QuestionPage = () => {
       <div className="flex-grow p-6">
 
         <h1 className="text-2xl font-bold m-6 "> Questions</h1>
-        <table className="table-auto w-full border-collapse border border-gray-200">
+        <table className="w-full bg-[#1E1E1E] rounded-lg shadow-lg">
           <thead>
             <tr className="bg-gradient-to-b from-neutral-400 to-neutral-800">
               <th className="border border-gray-300 px-4 py-2">Email</th>
@@ -82,7 +82,7 @@ const QuestionPage = () => {
           </thead>
           <tbody>
             {questions.map((question, index) => (
-              <tr key={question.id} className="text-center">
+              <tr key={question.id} className="border-b border-gray-600 hover:bg-gray-700">
                 <td className="border border-gray-300 px-4 py-2">{question.email}</td>
                 <td className="border border-gray-300 px-4 py-2">{question.subject}</td>
                 <td className="border border-gray-300 px-4 py-2">{question.content}</td>

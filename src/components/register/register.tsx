@@ -3,8 +3,10 @@ import Footer from "@/components/shared/Footer";
 import { SliverText } from "../ui/silver-text";
 import { useState } from "react";
 import { database, ref, set } from "@/firebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+    const navigator = useNavigate();
     const [isChecked, setIsChecked] = useState(false);
 
     const handleCheckboxChange = (
@@ -44,11 +46,13 @@ export default function Register() {
         // Save the data to Firebase
         set(formDataRef, updatedFormData)
             .then(() => {
-                alert("Registration successful!"); // Notify the user
+                alert("Registration successful!"); // Notify the User
+               
             })
             .catch((error) => {
                 console.error("Error saving data: ", error);
             });
+            navigator("/")
     };
 
     return (
@@ -386,6 +390,7 @@ export default function Register() {
                     {/* Submit and Reset Buttons */}
                     <div className="flex space-x-4 mt-4">
                         <button
+                        
                             name="SubmitBtn"
                             disabled={!isChecked}
                             className={`transition-all py-2 text-[16px] px-10 font-sans font-semibold rounded-md shadow-[0px_0px_20px_#05966988] ${
